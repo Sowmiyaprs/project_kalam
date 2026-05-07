@@ -35,3 +35,8 @@ Thumbs.db
 
 # Vercel
 .vercel
+
+# AI-DLC Documentation (not needed for deployment)
+aidlc-docs/
+aidlc-workflows/
+.kiro/
