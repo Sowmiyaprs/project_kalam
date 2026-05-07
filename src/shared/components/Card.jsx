@@ -32,16 +32,22 @@ export default function Card({
     ${className}
   `.trim().replace(/\s+/g, ' ');
 
-  const Component = hoverable ? motion.div : 'div';
+  if (hoverable) {
+    return (
+      <motion.div
+        className={classes}
+        onClick={onClick}
+        whileHover={{ y: -2 }}
+        transition={{ duration: 0.2 }}
+      >
+        {children}
+      </motion.div>
+    );
+  }
 
   return (
-    <Component
-      className={classes}
-      onClick={onClick}
-      whileHover={hoverable ? { y: -2 } : {}}
-      transition={{ duration: 0.2 }}
-    >
+    <div className={classes} onClick={onClick}>
       {children}
-    </Component>
+    </div>
   );
 }

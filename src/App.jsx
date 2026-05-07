@@ -25,7 +25,12 @@ function App() {
     <ThemeProvider>
       <ProfileProvider>
         <AnalysisProvider>
-          <BrowserRouter>
+          <BrowserRouter
+            future={{
+              v7_startTransition: true,
+              v7_relativeSplatPath: true,
+            }}
+          >
             <AuthProvider>
 
             <Toaster
