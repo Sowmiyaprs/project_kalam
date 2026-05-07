@@ -127,12 +127,14 @@ export function ProfileProvider({ children }) {
     let newStreak = profile.stats.currentStreak;
 
     if (lastCheckIn) {
-      const daysDiff = Math.floor(
-        (now - lastCheckIn) / (1000 * 60 * 60 * 24)
-      );
+      // Normalize dates to midnight for accurate day comparison
+      const nowDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const lastDate = new Date(lastCheckIn.getFullYear(), lastCheckIn.getMonth(), lastCheckIn.getDate());
+      
+      const daysDiff = Math.floor((nowDate - lastDate) / (1000 * 60 * 60 * 24));
 
       if (daysDiff === 0) {
-        // Same day, don't update streak
+        // Same day, don't update streak but still count the entry
       } else if (daysDiff === 1) {
         // Consecutive day
         newStreak += 1;
